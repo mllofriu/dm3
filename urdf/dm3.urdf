@@ -271,23 +271,21 @@
 	
 	<transmission name="right_tran1">
 		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="extension_to_extension"/>
+		<joint name="extention_to_extension">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
 		<actuator name="extension_motor">
 		  <hardwareInterface>EffortJointInterface</hardwareInterface>
 		  <mechanicalReduction>1</mechanicalReduction>
 		</actuator>
-  	</transmission>
+  </transmission>
 	
 
 	<gazebo>
-		<plugin filename="/home/ludo/workspace/hydro_ws/src/dm3/plugin/build/libmy_plugin.so" name="my_plugin">
-		  <front_base_to_left_wheel>front_base_to_left_wheel</front_base_to_left_wheel>
-		  <front_base_to_right_wheel>front_base_to_right_wheel</front_base_to_right_wheel>
-		  <back_base_to_left_wheel>back_base_to_left_wheel</back_base_to_left_wheel>
-		  <back_base_to_right_wheel>back_base_to_right_wheel</back_base_to_right_wheel>
-		</plugin>
+	  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+	    <robotNamespace>/myrobot</robotNamespace>
+	  </plugin>
 	</gazebo>
-
 </robot>
 
 

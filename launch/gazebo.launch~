@@ -1,6 +1,17 @@
 <launch>
+	<param name="robot_description" command="cat $(find dm3)/urdf/dm3.urdf" />
+	
+	<rosparam file="$(find dm3)/config/robot_control.yaml" command="load"/>
+
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"  output="screen" ns="/myrobot" args="joint1_position_controller joint_state_controller"/>
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+		<remap from="/joint_states" to="/myrbot/joint_states"/>
+	</node>
+
+
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="paused" value="true"/>
+		<arg name="paused" value="false"/>
 		<arg name="use_sim_time" value="true"/>
 		<arg name="gui" value="true"/>
 		<arg name="headless" value="false"/>
