@@ -40,8 +40,8 @@
 		<surface>
         <friction>
           <ode>
-            <mu>0.6</mu>
-            <mu2>0.6</mu2>
+            <mu>200</mu>
+            <mu2>150</mu2>
           </ode>
         </friction>
       </surface>
@@ -62,6 +62,17 @@
 		<joint_properties damping="0.0" friction="10"/>
 	</joint>
 
+	<transmission name="front_right_wheel_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="front_base_to_right_wheel">
+			<hardwareInterface>VelocityJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="front_right_wheel_motor">
+		  <hardwareInterface>VelocityJointInterface</hardwareInterface>
+		  <mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+  </transmission>
+
 	<link name="front_left_wheel">
 		<visual>
 			<geometry>
@@ -80,8 +91,8 @@
 		<surface>
         <friction>
           <ode>
-            <mu>0.6</mu>
-            <mu2>0.6</mu2>
+            <mu>200</mu>
+            <mu2>150</mu2>
           </ode>
         </friction>
       </surface>
@@ -101,6 +112,17 @@
 		<limit effort="100" velocity="100"/>
 		<joint_properties damping="0.0" friction="10"/>
 	</joint>
+
+	<transmission name="front_left_wheel_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="front_base_to_left_wheel">
+			<hardwareInterface>VelocityJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="front_left_wheel_motor">
+		  <hardwareInterface>VelocityJointInterface</hardwareInterface>
+		  <mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+  </transmission>
 
 	<link name="front_extension">
 		<visual>
@@ -135,9 +157,20 @@
 		<parent link="front_extension"/>
 		<child link="back_extension"/>
 		<origin rpy="0 1.57075 0" xyz="0 -.19 0"/>
-		<limit effort="100" velocity="100"/>
+		<limit effort="100" velocity="100" lower="-1" upper="1"/>
 		<joint_properties damping="0.0" friction="10"/>
 	</joint>
+
+	<transmission name="extension_to_extension_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="extention_to_extension">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="extension_to_extension_motor">
+		  <hardwareInterface>EffortJointInterface</hardwareInterface>
+		  <mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+  </transmission>
 
 	<link name="back_extension">
 		<visual>
@@ -207,8 +240,8 @@
 		<surface>
         <friction>
           <ode>
-            <mu>0.6</mu>
-            <mu2>0.6</mu2>
+            <mu>200</mu>
+            <mu2>150</mu2>
           </ode>
         </friction>
       </surface>
@@ -229,6 +262,17 @@
 		<joint_properties damping="0.0" friction="10"/>
 	</joint>
 
+	<transmission name="back_right_wheel_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="back_base_to_right_wheel">
+			<hardwareInterface>VelocityJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="back_right_wheel_motor">
+		  <hardwareInterface>VelocityJointInterface</hardwareInterface>
+		  <mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+  </transmission>
+
 	<link name="back_left_wheel">
 		<visual>
 			<geometry>
@@ -242,8 +286,8 @@
 		<surface>
         <friction>
           <ode>
-            <mu>0.6</mu>
-            <mu2>0.6</mu2>
+            <mu>200</mu>
+            <mu2>150</mu2>
           </ode>
         </friction>
       </surface>
@@ -268,14 +312,13 @@
 		<limit effort="100" velocity="100"/>
 		<joint_properties damping="0.0" friction="10"/>
 	</joint>
-	
-	<transmission name="right_tran1">
+	<transmission name="back_left_wheel_tran">
 		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="extention_to_extension">
-			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		<joint name="back_base_to_left_wheel">
+			<hardwareInterface>VelocityJointInterface</hardwareInterface>
 		</joint>
-		<actuator name="extension_motor">
-		  <hardwareInterface>EffortJointInterface</hardwareInterface>
+		<actuator name="back_left_wheel_motor">
+		  <hardwareInterface>VelocityJointInterface</hardwareInterface>
 		  <mechanicalReduction>1</mechanicalReduction>
 		</actuator>
   </transmission>

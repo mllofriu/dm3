@@ -3,7 +3,13 @@
 	
 	<rosparam file="$(find dm3)/config/robot_control.yaml" command="load"/>
 
-	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"  output="screen" ns="/myrobot" args="joint1_position_controller joint_state_controller"/>
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"  output="screen" ns="/myrobot" args="
+    joint_state_controller
+    
+    right_front_wheel_controller
+    left_front_wheel_controller
+    right_back_wheel_controller
+    left_back_wheel_controller"/>
 
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
 		<remap from="/joint_states" to="/myrbot/joint_states"/>
